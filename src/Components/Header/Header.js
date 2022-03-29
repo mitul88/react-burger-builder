@@ -1,5 +1,6 @@
 import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from "reactstrap";
 import "./Header.css";
+import Logo from '../../assets/logo.png';
 
 const Header = () => {
     return (
@@ -8,7 +9,9 @@ const Header = () => {
                     backgroundColor: "#d70f64",
                     height: "70px"
                 }}>
-                <NavbarBrand href='/' className="mr-auto ml-md-5 Brand"> Brand </NavbarBrand>
+                <NavbarBrand href='/' className="mr-auto ml-md-5 Brand">
+                    <img src={Logo} alt="Logo" width="80px" />
+                </NavbarBrand>
                 <Nav>
                     <NavItem className="mr-md-5">
                         <NavLink href="#" className="NavLink">
