@@ -4,13 +4,14 @@ import Ingredient from "../Ingredient/Ingredient";
 const Burger = props => {
     let ingredientArr = props.ingredients.map(item=> {
         let amountArr = [...Array(item.amount).keys()];
+        return amountArr.map(_ =>{
+            return <Ingredient type={item.type} key={Math.random()} />
+        })
     })
     return (
         <div>
             <Ingredient type="bread-top" />
-            <Ingredient type="cheese" />
-            <Ingredient type="salad" />
-            <Ingredient type="meat" />
+                {ingredientArr}
             <Ingredient type="bread-bottom" />
         </div>
     )

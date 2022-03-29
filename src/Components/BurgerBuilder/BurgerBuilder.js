@@ -14,7 +14,7 @@ export default class BurgerBuilder extends Component {
     render() {
         return (
             <div>
-                <Burger props={this.state.ingredients} />
+                <Burger ingredients={this.state.ingredients} />
             </div>
         )
     }
