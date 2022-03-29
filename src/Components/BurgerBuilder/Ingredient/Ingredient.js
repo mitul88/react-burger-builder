@@ -1,3 +1,4 @@
+import './Ingredient.css';
 import BreadTop from '../../../assets/images/top.png';
 import BreadBottom from '../../../assets/images/bottom.png';
 import Meat from '../../../assets/images/meat.png';
@@ -29,7 +30,7 @@ const Ingredient = props => {
     }
 
     return (
-        <div>
+        <div className='Ingredient'>
             {ingredient}
         </div>
     )
