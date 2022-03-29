@@ -1,5 +1,7 @@
 import React from "react";
 import Ingredient from "../Ingredient/Ingredient";
+import './Burger.css';
+
 
 const Burger = props => {
     let ingredientArr = props.ingredients.map(item=> {
@@ -9,7 +11,7 @@ const Burger = props => {
         })
     })
     return (
-        <div>
+        <div className="Burger">
             <Ingredient type="bread-top" />
                 {ingredientArr}
             <Ingredient type="bread-bottom" />
