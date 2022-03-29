@@ -5,9 +5,9 @@ export default class BurgerBuilder extends Component {
 
     state = {
         ingredients: [
-            {type: 'salad', amount: 1},
-            {type: 'meat', amount: 2},
-            {type: 'cheese', amount: 1},
+            {type: 'salad', amount: 0},
+            {type: 'meat', amount: 0},
+            {type: 'cheese', amount: 0},
         ]
     }
 

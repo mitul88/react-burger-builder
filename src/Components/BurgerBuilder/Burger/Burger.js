@@ -10,6 +10,14 @@ const Burger = props => {
             return <Ingredient type={item.type} key={Math.random()} />
         })
     })
+    .reduce((arr, element)=> {
+        return arr.concat(element);
+    }, []);
+
+    if(ingredientArr.length === 0) {
+        ingredientArr = <h4>Please add some ingredients</h4>
+    }
+
     return (
         <div className="Burger">
             <Ingredient type="bread-top" />
