@@ -9,7 +9,7 @@ const controls = [
 const BuildControl = props => {
     return (
         <div className="d-flex">
-            <div className="me-auto ms-5">props.label</div>
+            <div className="me-auto ms-5" style={{ fontWeight: "bold", fontSize: "1.2rem" }}>{props.label}</div>
             <button className="btn btn-danger btn-sm m-1">Less</button>
             <button className="btn btn-success btn-sm m-1">More</button>
         </div>
