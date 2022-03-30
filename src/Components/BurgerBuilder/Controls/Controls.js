@@ -1,5 +1,21 @@
 import { Card, CardBody, CardFooter, CardHeader, Button } from "reactstrap";
 
+const controls = [
+    {label: 'Salad', type: 'salad'},
+    {label: 'Cheese', type: 'cheese'},
+    {label: 'Meat', type: 'meat'}
+]
+
+const BuildControl = props => {
+    return (
+        <div className="d-flex">
+            <div className="me-auto ms-5">props.label</div>
+            <button className="btn btn-danger btn-sm m-1">Less</button>
+            <button className="btn btn-success btn-sm m-1">More</button>
+        </div>
+    )
+}
+
 
 const Controls = () => {
     return (
@@ -16,7 +32,15 @@ const Controls = () => {
                     <h4>Add Ingredients</h4>
                 </CardHeader>
                 <CardBody>
-
+                    {
+                        controls.map(item=> {
+                            return <BuildControl 
+                                 label={item.label} 
+                                 type={item.type}
+                                 key={Math.random()} 
+                               />
+                        })
+                    }
                 </CardBody>
                 <CardFooter>
                     <h5>
