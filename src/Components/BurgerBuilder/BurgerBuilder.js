@@ -12,11 +12,17 @@ export default class BurgerBuilder extends Component {
         ]
     }
 
+    addIngredientHandle = type => {
+        console.log(type);
+    }
+
     render() {
         return (
             <div className="d-flex flex-md-row flex-column">
                 <Burger ingredients={this.state.ingredients} />
-                <Controls />
+                <Controls 
+                    ingredientAdded = {this.addIngredientHandle}
+                />
             </div>
         )
     }
