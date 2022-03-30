@@ -20,6 +20,7 @@ export default class BurgerBuilder extends Component {
         ],
         totalPrice: 80,
         modalOpen: false,
+        canPurchase: false,
     }
 
     addIngredientHandle = type => {
@@ -60,6 +61,7 @@ export default class BurgerBuilder extends Component {
                         ingredientRemoved = {this.removeIngredientHandle}
                         price={this.state.totalPrice}
                         toggleModal={this.toggleModal}
+                        canPurchase={this.state.canPurchase}
                     />
                 </div>
                 <Modal isOpen={this.state.modalOpen}>
