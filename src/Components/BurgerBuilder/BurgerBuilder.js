@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Burger from "./Burger/Burger";
 import Controls from "./Controls/Controls";
-
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from "reactstrap";
 
 const INGREDIENT_PRICE = {
     salad: 20,
@@ -18,6 +18,7 @@ export default class BurgerBuilder extends Component {
             {type: 'cheese', amount: 0},
         ],
         totalPrice: 80,
+        modalOpen: false,
     }
 
     addIngredientHandle = type => {
@@ -42,15 +43,35 @@ export default class BurgerBuilder extends Component {
         this.setState({ingredeints: ingredients, totalPrice: newPrice})
     }
 
+    toggleModal = () => {
+        this.setState({
+            modalOpen: !this.state.modalOpen
+        })
+    }
+
     render() {
         return (
-            <div className="d-flex flex-md-row flex-column">
-                <Burger ingredients={this.state.ingredients} />
-                <Controls 
-                    ingredientAdded = {this.addIngredientHandle}
-                    ingredientRemoved = {this.removeIngredientHandle}
-                    price={this.state.totalPrice}
-                />
+            <div>
+                <div className="d-flex flex-md-row flex-column">
+                    <Burger ingredients={this.state.ingredients} />
+                    <Controls 
+                        ingredientAdded = {this.addIngredientHandle}
+                        ingredientRemoved = {this.removeIngredientHandle}
+                        price={this.state.totalPrice}
+                        toggleModal={this.toggleModal}
+                    />
+                </div>
+                <Modal isOpen={this.state.modalOpen}>
+                    <ModalHeader>Your Order Summary</ModalHeader>
+                    <ModalBody>
+                        <h5>Total Price: {this.state.totalPrice.toFixed(0)} BDT</h5>
+
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="success">Checkout</Button>
+                        <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
             </div>
         )
     }
