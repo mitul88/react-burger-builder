@@ -16,12 +16,17 @@ export default class BurgerBuilder extends Component {
         console.log(type);
     }
 
+    removeIngredientHandle = type => {
+        console.log(type);
+    }
+
     render() {
         return (
             <div className="d-flex flex-md-row flex-column">
                 <Burger ingredients={this.state.ingredients} />
                 <Controls 
                     ingredientAdded = {this.addIngredientHandle}
+                    ingredientRemoved = {this.removeIngredientHandle}
                 />
             </div>
         )
