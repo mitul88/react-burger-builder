@@ -49,6 +49,7 @@ export default class BurgerBuilder extends Component {
                 <Controls 
                     ingredientAdded = {this.addIngredientHandle}
                     ingredientRemoved = {this.removeIngredientHandle}
+                    price={this.state.totalPrice}
                 />
             </div>
         )
