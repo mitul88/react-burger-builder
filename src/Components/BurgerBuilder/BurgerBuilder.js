@@ -21,7 +21,15 @@ export default class BurgerBuilder extends Component {
     }
 
     removeIngredientHandle = type => {
-        console.log(type);
+        const ingredients = [...this.state.ingredients];
+        for (let item of ingredients) {
+            if(item.type === type ){ 
+                if(item.amount <= 0) 
+                return;
+                item.amount--
+            }
+        }
+        this.setState({ingredeints: ingredients})
     }
 
     render() {
