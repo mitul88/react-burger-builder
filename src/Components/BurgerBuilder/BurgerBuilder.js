@@ -23,6 +23,13 @@ export default class BurgerBuilder extends Component {
         canPurchase: false,
     }
 
+    updateCanPurchase = ingredients => {
+        const sum = ingredients.reduce((sum, elem)=> {
+            return sum + elem.amount;
+        }, 0);
+        this.setState({ canPurchase: sum > 0 })
+    }
+
     addIngredientHandle = type => {
         const ingredients = [...this.state.ingredients];
         const newPrice = this.state.totalPrice + INGREDIENT_PRICE[type];
@@ -30,6 +37,7 @@ export default class BurgerBuilder extends Component {
             if(item.type === type) item.amount++
         }
         this.setState({ ingredeints: ingredients, totalPrice: newPrice })
+        this.updateCanPurchase(ingredients);
     }
 
     removeIngredientHandle = type => {
@@ -43,6 +51,7 @@ export default class BurgerBuilder extends Component {
             }
         }
         this.setState({ingredeints: ingredients, totalPrice: newPrice})
+        this.updateCanPurchase(ingredients);
     }
 
     toggleModal = () => {
