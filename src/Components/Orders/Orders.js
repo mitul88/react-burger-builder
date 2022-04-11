@@ -1,5 +1,3 @@
-
-
 const Orders = () => {
     return (
         <div>

@@ -1,4 +1,3 @@
-
 const Checkout = () => {
     return (
         <div>
