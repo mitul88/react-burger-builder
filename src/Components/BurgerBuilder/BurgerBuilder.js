@@ -5,7 +5,7 @@ import Summary from "./Summary/Summary";
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from "reactstrap";
 
 import { connect } from "react-redux";
-import {addIngredient, removeIngredient, updatePurchasable} from '../../redux'
+import {addIngredient, removeIngredient, removeIngredient, updatePurchasable} from '../../redux/actionCreators'
 
 
 const mapStateToProps = state => {
@@ -13,6 +13,14 @@ const mapStateToProps = state => {
         ingredients: state.ingredients,
         totalPrice: state.totalPrice,
         canPurchase: state.canPurchase
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addIngredient: (igType) => dispatch(addIngredient(igType)),
+        removeIngredient: (igType) => dispatch(removeIngredient(igType)),
+        updatePurchasable: () => dispatch(updatePurchasable)
     }
 }
 
@@ -88,4 +96,4 @@ class BurgerBuilder extends Component {
     }
 }
 
-export default connect(mapStateToProps)(BurgerBuilder)
+export default connect(mapStateToProps, mapDispatchToProps)(BurgerBuilder)
