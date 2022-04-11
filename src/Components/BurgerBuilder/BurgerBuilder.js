@@ -16,7 +16,7 @@ const mapStateToProps = state => {
     }
 }
 
-export default class BurgerBuilder extends Component {
+class BurgerBuilder extends Component {
 
     state = {
         modalOpen: false,
@@ -87,3 +87,5 @@ export default class BurgerBuilder extends Component {
         )
     }
 }
+
+export default connect(mapStateToProps)(BurgerBuilder)
