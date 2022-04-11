@@ -8,6 +8,14 @@ import { connect } from "react-redux";
 import {addIngredient, removeIngredient, updatePurchasable} from '../../redux'
 
 
+const mapStateToProps = state => {
+    return {
+        ingredients: state.ingredients,
+        totalPrice: state.totalPrice,
+        canPurchase: state.canPurchase
+    }
+}
+
 export default class BurgerBuilder extends Component {
 
     state = {
@@ -55,20 +63,20 @@ export default class BurgerBuilder extends Component {
         return (
             <div>
                 <div className="d-flex flex-md-row flex-column">
-                    <Burger ingredients={this.state.ingredients} />
+                    <Burger ingredients={this.props.ingredients} />
                     <Controls 
                         ingredientAdded = {this.addIngredientHandle}
                         ingredientRemoved = {this.removeIngredientHandle}
-                        price={this.state.totalPrice}
+                        price={this.props.totalPrice}
                         toggleModal={this.toggleModal}
-                        canPurchase={this.state.canPurchase}
+                        canPurchase={this.props.canPurchase}
                     />
                 </div>
                 <Modal isOpen={this.state.modalOpen}>
                     <ModalHeader>Your Order Summary</ModalHeader>
                     <ModalBody>
-                        <h5>Total Price: {this.state.totalPrice.toFixed(0)} BDT</h5>
-                        <Summary ingredients={this.state.ingredients} />
+                        <h5>Total Price: {this.props.totalPrice.toFixed(0)} BDT</h5>
+                        <Summary ingredients={this.props.ingredients} />
                     </ModalBody>
                     <ModalFooter>
                         <Button color="success">Checkout</Button>
