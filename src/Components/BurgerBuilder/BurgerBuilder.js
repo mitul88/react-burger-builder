@@ -4,23 +4,11 @@ import Controls from "./Controls/Controls";
 import Summary from "./Summary/Summary";
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from "reactstrap";
 
-const INGREDIENT_PRICE = {
-    salad: 20,
-    cheese: 40,
-    meat: 90
-}
 
 export default class BurgerBuilder extends Component {
 
     state = {
-        ingredients: [
-            {type: 'salad', amount: 0},
-            {type: 'meat', amount: 0},
-            {type: 'cheese', amount: 0},
-        ],
-        totalPrice: 80,
         modalOpen: false,
-        canPurchase: false,
     }
 
     updateCanPurchase = ingredients => {
