@@ -4,6 +4,9 @@ import Controls from "./Controls/Controls";
 import Summary from "./Summary/Summary";
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from "reactstrap";
 
+import { connect } from "react-redux";
+import {addIngredient, removeIngredient, updatePurchasable} from '../../redux'
+
 
 export default class BurgerBuilder extends Component {
 
