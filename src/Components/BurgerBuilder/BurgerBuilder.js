@@ -5,7 +5,7 @@ import Summary from "./Summary/Summary";
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from "reactstrap";
 
 import { connect } from "react-redux";
-import {addIngredient, removeIngredient, removeIngredient, updatePurchasable} from '../../redux/actionCreators'
+import {addIngredient, removeIngredient, updatePurchasable} from '../../redux/actionCreators'
 
 
 const mapStateToProps = state => {
@@ -38,27 +38,11 @@ class BurgerBuilder extends Component {
     }
 
     addIngredientHandle = type => {
-        const ingredients = [...this.state.ingredients];
-        const newPrice = this.state.totalPrice + INGREDIENT_PRICE[type];
-        for (let item of ingredients) {
-            if(item.type === type) item.amount++
-        }
-        this.setState({ ingredeints: ingredients, totalPrice: newPrice })
-        this.updateCanPurchase(ingredients);
+        this.props.addIngredient(type);
     }
 
     removeIngredientHandle = type => {
-        const ingredients = [...this.state.ingredients];
-        const newPrice = this.state.totalPrice - INGREDIENT_PRICE[type];
-        for (let item of ingredients) {
-            if(item.type === type ){ 
-                if(item.amount <= 0) 
-                return;
-                item.amount--
-            }
-        }
-        this.setState({ingredeints: ingredients, totalPrice: newPrice})
-        this.updateCanPurchase(ingredients);
+        this.props.removeIngredient(type);
     }
 
     toggleModal = () => {

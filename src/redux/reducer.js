@@ -1,3 +1,6 @@
+import * as actionTypes from './actionTypes';
+
+
 const INGREDIENT_PRICE = {
     salad: 20,
     cheese: 40,
@@ -16,8 +19,32 @@ const INITIAL_STATE = {
 }
 
 export const reducer = (state=INITIAL_STATE, action) => {
+    const ingredients = [...state.ingredients];
+
     switch(action.type){
-        
+        case actionTypes.ADD_INGREDIENT:
+            for (let item of ingredients) {
+                if(item.type === action.payload) item.amount++
+            }
+            return {
+                ...state,
+                ingredients: ingredients,
+                totalPrice: state.totalPrice + INGREDIENT_PRICE[action.payload]
+            }
+
+        case actionTypes.REMOVE_INGREDIENT:
+            for (let item of ingredients) {
+                if(item.type === action.payload ){ 
+                    if(item.amount <= 0) 
+                    return state;
+                    item.amount--
+                }
+            }
+            return {
+                ...state,
+                ingredients: ingredients,
+                totalPrice: state.totalPrice - INGREDIENT_PRICE[action.payload]
+            }
         
         default:
             return state;
