@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => {
     return {
         addIngredient: (igType) => dispatch(addIngredient(igType)),
         removeIngredient: (igType) => dispatch(removeIngredient(igType)),
-        updatePurchasable: () => dispatch(updatePurchasable)
+        updatePurchasable: () => dispatch(updatePurchasable())
     }
 }
 
@@ -30,19 +30,14 @@ class BurgerBuilder extends Component {
         modalOpen: false,
     }
 
-    updateCanPurchase = ingredients => {
-        const sum = ingredients.reduce((sum, elem)=> {
-            return sum + elem.amount;
-        }, 0);
-        this.setState({ canPurchase: sum > 0 })
-    }
-
     addIngredientHandle = type => {
         this.props.addIngredient(type);
+        this.props.updatePurchasable();
     }
 
     removeIngredientHandle = type => {
         this.props.removeIngredient(type);
+        this.props.updatePurchasable();
     }
 
     toggleModal = () => {
