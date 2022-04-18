@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {Button} from "reactstrap"; 
+import { Navigate } from "react-router-dom";
 
 export class Checkout extends Component {
     
@@ -8,14 +9,20 @@ export class Checkout extends Component {
             deliveryAddress: "",
             phone: "",
             paymentType: "Cash On Delivery",
-        }
+        },
+        navigateBack : null
     }
     
     goBack = () => {
-        
+        this.setState({navigateBack: "/"})
     }
 
     render() {
+
+        if (this.state.navigateBack && this.state.navigateBack === "/") {
+            return <Navigate to={this.state.navigateBack} />
+          }
+
         return (
             <div>
                 <form>
