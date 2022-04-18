@@ -17,6 +17,15 @@ export class Checkout extends Component {
         this.setState({navigateBack: "/"})
     }
 
+    inputChangeHandler = (e) => {
+        this.setState({
+            values: {
+                ...this.state.values, 
+                [e.target.name]: e.target.value,
+            }
+        })
+    }
+
     render() {
 
         if (this.state.navigateBack && this.state.navigateBack === "/") {
@@ -26,11 +35,11 @@ export class Checkout extends Component {
         return (
             <div>
                 <form>
-                    <textarea name="deliveryAddress" value={this.state.values.deliveryAddress} className="form-control" placeholder="Your Address"></textarea>
+                    <textarea name="deliveryAddress" value={this.state.values.deliveryAddress} className="form-control" placeholder="Your Address" onChange={(e)=>this.inputChangeHandler(e)}></textarea>
                     <br />
-                    <input name="phone" className="form-control" value={this.state.values.phone} placeholder="Your Phone Number" />
+                    <input name="phone" className="form-control" value={this.state.values.phone} placeholder="Your Phone Number" onChange={(e)=>this.inputChangeHandler(e)} />
                     <br />
-                    <select name="paymentType" className="form-control" value={this.state.values.paymentType}>
+                    <select name="paymentType" className="form-control" value={this.state.values.paymentType} onChange={(e)=>this.inputChangeHandler(e)}>
                         <option value="Cash On Delivery">Cash On Delivery</option>
                         <option value="bKash">bKash</option>
                     </select>
