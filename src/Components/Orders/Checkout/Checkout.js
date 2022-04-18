@@ -2,7 +2,15 @@ import React, { Component } from "react";
 import {Button} from "reactstrap"; 
 import { Navigate } from "react-router-dom";
 
+import axios from "axios";
+
 import {connect} from 'react-redux';
+
+import env from "react-dotenv";
+
+
+const firebase_api =env.API_URL;
+
 
 const mapStateToProps = state => {
     return {
@@ -37,7 +45,16 @@ class Checkout extends Component {
     }
 
     submitHandler = () => {
-        console.log(this.state.values);
+        const order = {
+            ingredients: this.props.ingredients,
+            customerInfo: this.state.values,
+            price: this.props.totalPrice,
+            orderCreatedAt: new Date(),
+        }
+        axios.post(firebase_api+"/orders.json", order)
+            .then(response=> console.log(response))
+            .catch(err=> console.log(err))
+        console.log(order);
     }
 
     render() {
