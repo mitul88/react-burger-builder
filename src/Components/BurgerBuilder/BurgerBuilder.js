@@ -6,8 +6,8 @@ import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from "reactstrap";
 
 import { connect } from "react-redux";
 import {addIngredient, removeIngredient, updatePurchasable} from '../../redux/actionCreators';
+import { Navigate } from "react-router-dom";
 
-import { useNavigate } from "react-router";
 
 const mapStateToProps = state => {
     return {
@@ -29,6 +29,7 @@ class BurgerBuilder extends Component {
 
     state = {
         modalOpen: false,
+        redirectToChekout: null
     }
 
     addIngredientHandle = type => {
@@ -49,11 +50,15 @@ class BurgerBuilder extends Component {
     
 
     handleCheckout = () => {    
-        
+        this.setState({ redirectToChekout: "/checkout" });
     }
 
 
     render() {
+        if (this.state.redirectToChekout && this.state.redirectToChekout === "/checkout") {
+            return <Navigate to={this.state.redirectToChekout} />
+          }
+
         return (
             <div>
                 <div className="d-flex flex-md-row flex-column">
