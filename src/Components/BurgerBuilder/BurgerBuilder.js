@@ -5,8 +5,9 @@ import Summary from "./Summary/Summary";
 import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from "reactstrap";
 
 import { connect } from "react-redux";
-import {addIngredient, removeIngredient, updatePurchasable} from '../../redux/actionCreators'
+import {addIngredient, removeIngredient, updatePurchasable} from '../../redux/actionCreators';
 
+import { useNavigate } from "react-router";
 
 const mapStateToProps = state => {
     return {
@@ -45,6 +46,12 @@ class BurgerBuilder extends Component {
             modalOpen: !this.state.modalOpen
         })
     }
+    
+
+    handleCheckout = () => {    
+        
+    }
+
 
     render() {
         return (
@@ -66,7 +73,7 @@ class BurgerBuilder extends Component {
                         <Summary ingredients={this.props.ingredients} />
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="success">Checkout</Button>
+                        <Button color="success" onClick={this.handleCheckout}>Checkout</Button>
                         <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
