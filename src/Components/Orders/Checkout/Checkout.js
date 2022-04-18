@@ -48,6 +48,16 @@ class Checkout extends Component {
 
         return (
             <div>
+
+                <h4 style={{
+                    border:"1px solid grey",
+                    boxShadow: "1px 1px #888888",
+                    borderRadius: "5px",
+                    padding: "20px"
+                }}>
+                    Payment: {this.props.totalPrice} 
+                </h4>
+
                 <form style={{
                     border:"1px solid grey",
                     boxShadow: "1px 1px #888888",
