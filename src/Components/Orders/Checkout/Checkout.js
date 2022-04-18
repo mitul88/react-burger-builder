@@ -26,6 +26,10 @@ export class Checkout extends Component {
         })
     }
 
+    submitHandler = () => {
+        console.log(this.state.values);
+    }
+
     render() {
 
         if (this.state.navigateBack && this.state.navigateBack === "/") {
@@ -34,7 +38,12 @@ export class Checkout extends Component {
 
         return (
             <div>
-                <form>
+                <form style={{
+                    border:"1px solid grey",
+                    boxShadow: "1px 1px #888888",
+                    borderRadius: "5px",
+                    padding: "20px"
+                }}>
                     <textarea name="deliveryAddress" value={this.state.values.deliveryAddress} className="form-control" placeholder="Your Address" onChange={(e)=>this.inputChangeHandler(e)}></textarea>
                     <br />
                     <input name="phone" className="form-control" value={this.state.values.phone} placeholder="Your Phone Number" onChange={(e)=>this.inputChangeHandler(e)} />
@@ -44,7 +53,7 @@ export class Checkout extends Component {
                         <option value="bKash">bKash</option>
                     </select>
                     <br />
-                    <Button style={{backgroundColor: "#d70f64"}} className="me-auto" onClick={this.goBack}>Place Order</Button>
+                    <Button style={{backgroundColor: "#d70f64"}} className="me-auto" onClick={this.submitHandler}>Place Order</Button>
                     <Button color="secondary" className="ms-1" onClick={this.goBack}>Cancel</Button>
                 </form>
             </div>
