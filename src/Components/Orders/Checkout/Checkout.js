@@ -2,7 +2,17 @@ import React, { Component } from "react";
 import {Button} from "reactstrap"; 
 import { Navigate } from "react-router-dom";
 
-export class Checkout extends Component {
+import {connect} from 'react-redux';
+
+const mapStateToProps = state => {
+    return {
+        ingredients: state.ingredients,
+        totalPrice: state.totalPrice,
+        canPurchase: state.canPurchase,
+    }
+}
+
+class Checkout extends Component {
     
     state = {
         values: {
@@ -61,4 +71,4 @@ export class Checkout extends Component {
     }
 }
 
-export default Checkout;
+export default connect(mapStateToProps)(Checkout);
