@@ -10,6 +10,8 @@ import env from "react-dotenv";
 
 import Spinner from "../../Spinner/Spinner";
 
+import { resetIngredients } from '../../../redux/actionCreators';
+
 const firebase_api =env.API_URL;
 
 
@@ -18,6 +20,12 @@ const mapStateToProps = state => {
         ingredients: state.ingredients,
         totalPrice: state.totalPrice,
         canPurchase: state.canPurchase,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        resetIngredients: () => dispatch(resetIngredients()),
     }
 }
 
@@ -64,7 +72,8 @@ class Checkout extends Component {
                         isLoading: false,
                         isModalOpen: true,
                         modalMsg: "Order Placed Successfully"
-                    });         
+                    });
+                    this.props.resetIngredients();         
                 } else {
                     this.setState({
                         isLoading: false,
@@ -136,4 +145,4 @@ class Checkout extends Component {
     }
 }
 
-export default connect(mapStateToProps)(Checkout);
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

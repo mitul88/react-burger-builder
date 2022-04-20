@@ -20,8 +20,8 @@ export const updatePurchasable = () => {
     }
 }
 
-export const restIngredients = () => {
+export const resetIngredients = () => {
     return {
-        type: actionTypes.REMOVE_INGREDIENT,
+        type: actionTypes.RESET_INGREDIENTS,
     }
 }
