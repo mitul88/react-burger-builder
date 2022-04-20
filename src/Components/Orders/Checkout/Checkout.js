@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Button} from "reactstrap"; 
+import {Button, Modal, ModalBody} from "reactstrap"; 
 import { Navigate } from "react-router-dom";
 
 import axios from "axios";
@@ -31,6 +31,8 @@ class Checkout extends Component {
         },
         navigateBack : null,
         isLoading: false,
+        isModalOpen: false,
+        modalMsg: ""
     }
     
     goBack = () => {
@@ -115,6 +117,11 @@ class Checkout extends Component {
         return (
             <div>
                 {this.state.isLoading ? <Spinner /> : form }
+                <Modal isOpen={this.state.isModalOpen} onClick={this.goBack}>
+                    <ModalBody>
+                        <p>{this.state.modalMsg}</p>
+                    </ModalBody>
+                </Modal>
             </div>
         )
     }
