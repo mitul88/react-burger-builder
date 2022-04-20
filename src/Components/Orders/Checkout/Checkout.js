@@ -58,10 +58,19 @@ class Checkout extends Component {
         }
         axios.post(firebase_api+"/orders.json", order)
             .then(response=> {
-                if(response === 200) {
-                    this.setState({isLoading: false});
+                console.log(response.status)
+                if(response.status === 200) {
+                    this.setState({
+                        isLoading: false,
+                        isModalOpen: true,
+                        modalMsg: "Order Placed Successfully"
+                    });         
                 } else {
-                    this.setState({isLoading: false});
+                    this.setState({
+                        isLoading: false,
+                        isModalOpen: true,
+                        modalMsg: "Something Went Wrong! Please Place your Order again"
+                    }); 
                 }
             })
             .catch(err=> {
