@@ -16,6 +16,12 @@ export const removeIngredient = igType => {
 
 export const updatePurchasable = () => {
     return {
-        type: actionTypes.UPDATE_PURCHASABLE
+        type: actionTypes.UPDATE_PURCHASABLE,
+    }
+}
+
+export const resetIngredients = () => {
+    return {
+        type: actionTypes.RESET_INGREDIENTS,
     }
 }
