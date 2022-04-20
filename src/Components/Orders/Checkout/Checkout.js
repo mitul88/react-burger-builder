@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 
 import env from "react-dotenv";
 
+import Spinner from "../../Spinner/Spinner";
 
 const firebase_api =env.API_URL;
 
@@ -28,7 +29,8 @@ class Checkout extends Component {
             phone: "",
             paymentType: "Cash On Delivery",
         },
-        navigateBack : null
+        navigateBack : null,
+        isLoading: false,
     }
     
     goBack = () => {
@@ -45,6 +47,7 @@ class Checkout extends Component {
     }
 
     submitHandler = () => {
+        this.setState({isLoading: true});
         const order = {
             ingredients: this.props.ingredients,
             customerInfo: this.state.values,
@@ -52,20 +55,23 @@ class Checkout extends Component {
             orderCreatedAt: new Date(),
         }
         axios.post(firebase_api+"/orders.json", order)
-            .then(response=> console.log(response))
-            .catch(err=> console.log(err))
-        console.log(order);
+            .then(response=> {
+                if(response === 200) {
+                    this.setState({isLoading: false});
+                } else {
+                    this.setState({isLoading: false});
+                }
+            })
+            .catch(err=> {
+                this.setState({isLoading: false});
+            })
+            console.log(this.props.canPurchase)
     }
 
     render() {
 
-        if (this.state.navigateBack && this.state.navigateBack === "/") {
-            return <Navigate to={this.state.navigateBack} />
-          }
-
-        return (
+        let form = (
             <div>
-
                 <h4 style={{
                     border:"1px solid grey",
                     boxShadow: "1px 1px #888888",
@@ -99,6 +105,16 @@ class Checkout extends Component {
                         </Button>
                     <Button color="secondary" className="ms-1" onClick={this.goBack}>Cancel</Button>
                 </form>
+            </div>
+        )
+
+        if (this.state.navigateBack && this.state.navigateBack === "/") {
+            return <Navigate to={this.state.navigateBack} />
+          }
+
+        return (
+            <div>
+                {this.state.isLoading ? <Spinner /> : form }
             </div>
         )
     }
