@@ -90,7 +90,13 @@ class Checkout extends Component {
                         <option value="bKash">bKash</option>
                     </select>
                     <br />
-                    <Button style={{backgroundColor: "#d70f64"}} className="me-auto" onClick={this.submitHandler}>Place Order</Button>
+                    <Button 
+                        style={{backgroundColor: "#d70f64"}} 
+                        className="me-auto" 
+                        onClick={this.submitHandler}
+                        disabled={!this.props.canPurchase}>
+                            Place Order
+                        </Button>
                     <Button color="secondary" className="ms-1" onClick={this.goBack}>Cancel</Button>
                 </form>
             </div>
