@@ -9,9 +9,13 @@ const mapDispatchToProps = dispatch => {
 }
 
 class Orders extends Component {
+    componentDidMount() {
+        this.props.fetchOrders();
+    }
+    
     render() {
         
     }
 }
 
-export default Orders;
+export default connect(null, mapDispatchToProps)(Orders);
