@@ -25,3 +25,16 @@ export const resetIngredients = () => {
         type: actionTypes.RESET_INGREDIENTS,
     }
 }
+
+export const loadOrders = orders => {
+    return {
+        type: actionTypes.LOAD_ORDERS,
+        payload: orders,
+    }
+}
+
+export const orderLoadFaild = () => {
+    return {
+        type: actionTypes.ORDER_LOAD_FAILED,
+    }
+}
