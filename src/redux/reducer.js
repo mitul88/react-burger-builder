@@ -69,7 +69,13 @@ export const reducer = (state=INITIAL_STATE, action) => {
                 totalPrice: 80,
                 canPurchase: false,
             }
-            
+           
+        case actionTypes.LOAD_ORDERS:
+                console.log(action.payload)
+            return {
+                ...state,
+            }
+
         default:
             return state;
     }
