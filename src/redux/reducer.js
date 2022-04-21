@@ -71,7 +71,13 @@ export const reducer = (state=INITIAL_STATE, action) => {
             }
            
         case actionTypes.LOAD_ORDERS:
-                console.log(action.payload)
+                let orders = [];
+                for (let key in action.payload) {
+                    orders.push({
+                        ...action.payload[key],
+                        id: key
+                    })
+                }
             return {
                 ...state,
             }
