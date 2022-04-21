@@ -1,4 +1,12 @@
+import axios from 'axios';
+
 import * as actionTypes from './actionTypes';
+
+import env from 'react-dotenv';
+
+const FIREBASE_API = env.API_URL;
+
+
 
 export const addIngredient = igType => {
     return {
@@ -37,4 +45,8 @@ export const orderLoadFaild = () => {
     return {
         type: actionTypes.ORDER_LOAD_FAILED,
     }
+}
+
+export const fetchOrders = () => dispatch => {
+    axios.get(FIREBASE_API+"/orders")
 }
