@@ -48,5 +48,8 @@ export const orderLoadFaild = () => {
 }
 
 export const fetchOrders = () => dispatch => {
-    axios.get(FIREBASE_API+"/orders")
+    axios.get(FIREBASE_API+"/orders.json")
+        .then(response=> {
+            console.log(response)
+        })
 }
