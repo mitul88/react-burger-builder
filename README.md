@@ -1,7 +1,7 @@
 ## Burger builder
 
 ### About the project
-This is a react project where user can create his own custom burger 
+This is a react project to create and take burger orders
 
 ### To run
 Type "npm start" in the terminal but before that make sure to install the dependecies by typing "npm install" in the terminal within the project directory.
