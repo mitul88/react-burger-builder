@@ -14,6 +14,9 @@ const INITIAL_STATE = {
         {type: 'meat', amount: 0},
         {type: 'cheese', amount: 0},
     ],
+    orders:[],
+    orderLoading: true,
+    orderErr: false,
     totalPrice: 80,
     canPurchase: false,
 }
