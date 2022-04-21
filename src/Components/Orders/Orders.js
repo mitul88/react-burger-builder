@@ -27,9 +27,20 @@ class Orders extends Component {
     }
     
     render() {
-        let orders = this.props.orders.map(order=> {
-           return <Order order={order} key={order.id} />
-        })
+        let orders = null;
+        if(this.props.orderErr) {
+                orders = <h3 style={{
+                    border: "1px solid grey",
+                    boxShadow: "1px1px #88888",
+                    borderRadius: "5px",
+                    padding: "20px",
+                    marginBottom: "10px" 
+                }}>Sorry Failed to Load Orders</h3> 
+        } else {
+            orders = this.props.orders.map(order=> {
+                return <Order order={order} key={order.id} />
+             })
+        }
         return (
             <div>
                 {this.props.orderLoading? <Spinner /> : orders}
