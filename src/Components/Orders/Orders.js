@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchOrders } from "../../redux/actionCreators";
 import Order from "./Order/Order";
+import Spinner from "../Spinner/Spinner"
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -22,16 +23,16 @@ class Orders extends Component {
         this.props.fetchOrders();
     }
     componentDidUpdate() {
-        console.log(this.props)
+        // console.log(this.props)
     }
     
     render() {
         let orders = this.props.orders.map(order=> {
-            console.log(order)
+           return <Order order={order} key={order.id} />
         })
         return (
             <div>
-                {orders}
+                {this.props.orderLoading? <Spinner /> : orders}
             </div>
         )
     }
