@@ -8,18 +8,29 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        orders: state.orders,
+        orderLoading: state.orderLoading,
+        orderErr: state.orderErr
+    }
+}
+
 class Orders extends Component {
     componentDidMount() {
         this.props.fetchOrders();
+    }
+    componentDidUpdate() {
+        console.log(this.props)
     }
     
     render() {
         return (
             <div>
-                
+
             </div>
         )
     }
 }
 
-export default connect(null, mapDispatchToProps)(Orders);
+export default connect(mapStateToProps, mapDispatchToProps)(Orders);
