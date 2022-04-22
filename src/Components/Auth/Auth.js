@@ -45,11 +45,12 @@ class Auth extends Component {
                         } else if ( values.password.length < 4 ) {
                             errors.password="Password must be atleast 4 charachters!!"
                         }
-
-                        if(!values.passwordConfirm) {
-                            errors.passwordConfirm="Please confirm your password"
-                        } else if( values.password !== values.passwordConfirm ) {
-                            errors.passwordConfirm="Password does not match with the password confirmation"
+                        if(this.state.mode==="register") {
+                            if(!values.passwordConfirm) {
+                                errors.passwordConfirm="Please confirm your password"
+                            } else if( values.password !== values.passwordConfirm ) {
+                                errors.passwordConfirm="Password does not match with the password confirmation"
+                            }
                         }
                         return errors;
                     }}
