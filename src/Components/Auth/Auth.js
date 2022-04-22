@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Formik } from "formik";
 import { auth } from "../../redux/authActionCreators";
 
+import { connect } from "formik";
+
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -131,4 +133,4 @@ class Auth extends Component {
 }
 
 
-export default Auth;
+export default connect(null, mapDispatchToProps)(Auth);
