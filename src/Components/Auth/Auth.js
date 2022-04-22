@@ -20,6 +20,30 @@ class Auth extends Component {
                             console.log(values)
                         }
                     }
+
+                    validate={(values)=> {
+                        const errors = {}
+
+                        if(!values.email) {
+                            errors.email = "Required!"
+                        } else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+                            errors.email="Please type correct email!"
+                        }
+
+                        if(!values.password) {
+                            errors.password="Password required!!"
+                        } else if ( values.password.length < 4 ) {
+                            errors.password="Password must be atleast 4 charachters!!"
+                        }
+
+                        if(!values.passwordConfirm) {
+                            errors.passwordConfirm="Please confirm your password"
+                        } else if( values.password !== values.passwordConfirm ) {
+                            errors.passwordConfirm="Password does not match with the password confirmation"
+                        }
+
+                        return errors;
+                    }}
                 >
                     {({values, handleChange, handleSubmit})=> {
                         return(
