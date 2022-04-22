@@ -6,6 +6,13 @@ class Auth extends Component {
     state = {
         mode: "register"
     }
+
+    switchModeHandler =()=> {
+        this.setState({
+            mode: this.state.mode === "register"? "login":"register"
+        })
+    }
+
     render() {
         return (
             <div>
@@ -54,7 +61,23 @@ class Auth extends Component {
                                 padding: "15px",
                                 borderRadius: "5px"
                             }}>
-                            <button className="btn btn-link" type="button">Switch to {this.state.mode==="register"? "Login" : "Register"}</button>
+                            <button style={{
+                                    width: "100%",
+                                    backgroundColor: "#d70f64",
+                                    color: "#fff"
+                                }} 
+                                className="btn btn-lg mb-3" 
+                                type="button"
+                                onClick={this.switchModeHandler}
+                            >
+                                    Switch to {this.state.mode==="register"? "Login" : "Register"}
+                                </button>
+                                <h3 style={{
+                                    width: "100%",
+                                    textAlign: "center"
+                                }}>
+                                    {this.state.mode==="register"? "SIGN UP" : "LOGIN"}
+                                </h3>
                             <form onSubmit={handleSubmit}>
                                 <input 
                                     name="email"
@@ -72,20 +95,22 @@ class Auth extends Component {
                                     onChange={handleChange}
                                 />
                                 <span style={{color:"red"}}>{errors.password}</span>
-                                <input 
-                                    name="passwordConfirm"
-                                    placeholder="Confirm password"
-                                    className="form-control"
-                                    value={values.passwordConfirm}
-                                    onChange={handleChange}
-                                />
-                                <span style={{color:"red"}}>{errors.passwordConfirm}</span>
+                                {this.state.mode==="register"? <div>
+                                    <input 
+                                        name="passwordConfirm"
+                                        placeholder="Confirm password"
+                                        className="form-control"
+                                        value={values.passwordConfirm}
+                                        onChange={handleChange}
+                                    />
+                                    <span style={{color:"red"}}>{errors.passwordConfirm}</span>
+                                </div> : null}
                                 <br />
                                 <button
                                     type="submit"
-                                    className="btn btn-outline-success mt-3"
+                                    className="btn btn-success mt-3"
                                 >
-                                    Sign up
+                                    {this.state.mode==="register"? "SIGN UP" : "LOGIN"}
                                 </button>
                             </form>
                         </div> 
