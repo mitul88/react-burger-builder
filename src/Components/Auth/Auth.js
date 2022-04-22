@@ -3,6 +3,9 @@ import { Formik } from "formik";
 
 
 class Auth extends Component {
+    state = {
+        mode: "register"
+    }
     render() {
         return (
             <div>
@@ -51,6 +54,7 @@ class Auth extends Component {
                                 padding: "15px",
                                 borderRadius: "5px"
                             }}>
+                            <button className="btn btn-link" type="button">Switch to {this.state.mode==="register"? "Login" : "Register"}</button>
                             <form onSubmit={handleSubmit}>
                                 <input 
                                     name="email"
@@ -79,7 +83,7 @@ class Auth extends Component {
                                 <br />
                                 <button
                                     type="submit"
-                                    className="btn btn-success mt-3"
+                                    className="btn btn-outline-success mt-3"
                                 >
                                     Sign up
                                 </button>
