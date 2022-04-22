@@ -41,13 +41,16 @@ class Auth extends Component {
                         } else if( values.password !== values.passwordConfirm ) {
                             errors.passwordConfirm="Password does not match with the password confirmation"
                         }
-
                         return errors;
                     }}
                 >
-                    {({values, handleChange, handleSubmit})=> {
+                    {({values, handleChange, handleSubmit, errors})=> {
                         return(
-                            <div>
+                            <div style={{
+                                border: "1px solid grey",
+                                padding: "15px",
+                                borderRadius: "5px"
+                            }}>
                             <form onSubmit={handleSubmit}>
                                 <input 
                                     name="email"
@@ -56,6 +59,7 @@ class Auth extends Component {
                                     value={values.email}
                                     onChange={handleChange}
                                 />
+                                <span style={{color:"red"}}>{errors.email}</span>
                                 <input 
                                     name="password"
                                     placeholder="Password"
@@ -63,6 +67,7 @@ class Auth extends Component {
                                     value={values.password}
                                     onChange={handleChange}
                                 />
+                                <span style={{color:"red"}}>{errors.password}</span>
                                 <input 
                                     name="passwordConfirm"
                                     placeholder="Confirm password"
@@ -70,6 +75,8 @@ class Auth extends Component {
                                     value={values.passwordConfirm}
                                     onChange={handleChange}
                                 />
+                                <span style={{color:"red"}}>{errors.passwordConfirm}</span>
+                                <br />
                                 <button
                                     type="submit"
                                     className="btn btn-success mt-3"
