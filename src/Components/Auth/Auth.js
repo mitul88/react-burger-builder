@@ -6,7 +6,23 @@ class Auth extends Component {
     render() {
         return (
             <div>
-                Auth
+                <Formik
+                    initialValues={
+                        {
+                            email: "",
+                            password: "",
+                            passwordConfirm: ""
+                        }
+                    }
+
+                    onSubmit={
+                        (values) => {
+                            console.log(values)
+                        }
+                    }
+                >
+
+                </Formik>
             </div>
         )
     }
