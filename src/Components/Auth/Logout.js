@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useNavigate } from "react-router";
+import { Navigate } from "react-router-dom";
 
 import { connect } from "react-redux";
 
@@ -13,11 +13,14 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-class Logout extends Component {
-    render() {
-        const navigate = useNavigate();
 
-        return navigate("./", { replace: true })
+class Logout extends Component {
+    componentDidMount() {
+        this.props.logout();
+    }
+
+    render() {
+       return <Navigate to={"/"} />
     }
 }
 

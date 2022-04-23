@@ -12,6 +12,8 @@ import { connect } from "react-redux";
 
 import { authCheck } from "../redux/authActionCreators";
 
+import Logout from "./Auth/Logout";
+
 const mapStateToProps = state => {
     return {
         token: state.token
@@ -49,6 +51,7 @@ class Main extends Component  {
                     <Route path="/" exact element={<BurgerBuilder />} />
                     <Route path="/orders" element={<Orders />} />
                     <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/logout" element={<Logout />} />
                     <Route
                         path="*"
                         element={<Navigate to="/" replace />}
