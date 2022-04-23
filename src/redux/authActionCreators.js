@@ -43,3 +43,19 @@ export const auth = (email, password, mode) => dispatch =>{
         })
         .catch(err=> console.log(err.response))
 }
+
+export const authCheck = () => dispatch => {
+    const token = localStorage.getItem('token')
+    if(!token) {
+        // logout
+
+    } else {
+        const expirationTime = new Date(localStorage.getItem('expirationTime'));
+        if(expirationTime <= new Date()) {
+            // logout
+        } else {
+            const userId = localStorage.getItem('userId');
+            dispatch(authSuccess(token, userId))
+        }
+    }
+}
