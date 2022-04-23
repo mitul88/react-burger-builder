@@ -21,6 +21,7 @@ export const authLoading = isLoading => {
 }
 
 export const auth = (email, password, mode) => dispatch =>{
+    dispatch(authLoading(true));
     const authData = {
         email: email,
         password: password,
@@ -41,6 +42,7 @@ export const auth = (email, password, mode) => dispatch =>{
     axios.post( authUrl + API_KEY, authData )
         .then(response=> {
             if(response.status === 200) {
+                dispatch(authLoading(false));
                 localStorage.setItem('token', response.data.idToken);
                 localStorage.setItem('userId', response.data.localId);
                 const expirationTime = new Date(new Date().getTime() + response.data.expiresIn * 1000);
@@ -48,7 +50,11 @@ export const auth = (email, password, mode) => dispatch =>{
                 dispatch(authSuccess( response.data.idToken, response.data.localId ));
             }
         })
-        .catch(err=> console.log(err.response))
+        .catch(err=>{
+            dispatch(authLoading(false))
+            console.log(err.response)
+            } 
+         )
 }
 
 export const logout = () => {
