@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 
 const mapDispatchToProps = dispatch => {
     return {
-        auth: (email, password) => dispatch(auth(email, password))
+        auth: (email, password, mode) => dispatch(auth(email, password, mode))
     }
 }
 
@@ -36,7 +36,7 @@ class Auth extends Component {
 
                     onSubmit={
                         (values) => {
-                            this.props.auth(values.email, values.password);
+                            this.props.auth(values.email, values.password, this.state.mode);
                         }
                     }
 
