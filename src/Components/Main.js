@@ -26,10 +26,14 @@ const mapDispatchToProps = dispatch => {
 
 class Main extends Component  {
 
+    componentDidMount() {
+        this.props.authCheck();
+    }
+
     render() {
         let routes = null;
 
-        if (props.token===null) {
+        if (this.props.token===null) {
             routes = (
                 <Routes>
                     <Route path="/login" exact element={<Auth />} />
