@@ -11,6 +11,13 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        authLoading: state.authLoading,
+        authFailedMsg: state.authFailedMsg,
+    }
+}
+
 class Auth extends Component {
     state = {
         mode: "register"
@@ -133,4 +140,4 @@ class Auth extends Component {
 }
 
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
