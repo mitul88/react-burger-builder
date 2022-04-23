@@ -19,6 +19,8 @@ const INITIAL_STATE = {
     orderErr: false,
     totalPrice: 80,
     canPurchase: false,
+    token: null,
+    userId: null,
 }
 
 export const reducer = (state=INITIAL_STATE, action) => {
