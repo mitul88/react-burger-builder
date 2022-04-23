@@ -3,7 +3,7 @@ import axios from "axios";
 
 import env from "react-dotenv";
 
-export const auth = (email, password) => dispatch =>{
+export const auth = (email, password, mode) => dispatch =>{
     const authData = {
         email: email,
         password: password,
@@ -11,6 +11,7 @@ export const auth = (email, password) => dispatch =>{
     }
 
     const API_KEY= env.API_KEY;
+
     axios.post("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+API_KEY, 
         authData)
         .then(response=> {
