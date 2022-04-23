@@ -13,6 +13,13 @@ export const authSuccess = (token, userId) => {
     }
 }
 
+export const authLoading = isLoading => {
+    return {
+        type: actionTypes.AUTH_LOADING,
+        payload: isLoading,
+    }
+}
+
 export const auth = (email, password, mode) => dispatch =>{
     const authData = {
         email: email,
