@@ -9,6 +9,10 @@ export const auth = (email, password) => dispatch =>{
     }
 
     const API_KEY= "AIzaSyDg1eBFyJYo2WdFs6GtAEDZsbB7qncb7LY";
-    axios.post("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+API_KEY, authData)
-        .then(response=> console.log(response))
+    axios.post("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+API_KEY, 
+        authData)
+        .then(response=> {
+            console.log(response)
+        })
+        .catch(err=> console.log(err.response))
 }
