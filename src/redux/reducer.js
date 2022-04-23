@@ -111,6 +111,12 @@ export const reducer = (state=INITIAL_STATE, action) => {
                 userId: null
             }
 
+        case actionTypes.AUTH_LOADING:
+            return {
+                ...state,
+                authLoading: action.payload
+            }
+
         default:
             return state;
     }
