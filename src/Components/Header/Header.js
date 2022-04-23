@@ -11,7 +11,36 @@ const mapStateToProps = state => {
     }
 }
 
-const Header = () => {
+const Header = props => {
+
+    let links = null;
+    if(props.token === null) {
+        links = (
+            <Nav>
+                <NavItem className="mr-md-5">
+                    <NavLink to="/login" className="NavLink">
+                        Login
+                    </NavLink>
+                </NavItem>
+            </Nav>
+        )
+    } else {
+        links = (
+            <Nav>
+                <NavItem className="mr-md-5">
+                    <NavLink exact="true" to="/" className="NavLink">
+                        BurgerBuilder
+                    </NavLink>
+                </NavItem>
+                <NavItem className="mr-md-5">
+                    <NavLink to="/orders" className="NavLink">
+                        Orders
+                    </NavLink>
+                </NavItem>
+            </Nav>
+        )
+    }
+
     return (
         <div className="Navigation">
             <Navbar style={{
@@ -21,23 +50,7 @@ const Header = () => {
                 <NavbarBrand href='/' className="mr-auto ml-md-5 Brand">
                     <img src={Logo} alt="Logo" width="80px" />
                 </NavbarBrand>
-                <Nav>
-                    <NavItem className="mr-md-5">
-                        <NavLink exact="true" to="/" className="NavLink">
-                            BurgerBuilder
-                        </NavLink>
-                    </NavItem>
-                    <NavItem className="mr-md-5">
-                        <NavLink to="/orders" className="NavLink">
-                            Orders
-                        </NavLink>
-                    </NavItem>
-                    <NavItem className="mr-md-5">
-                        <NavLink to="/login" className="NavLink">
-                            Login
-                        </NavLink>
-                    </NavItem>
-                </Nav>
+                {links}
             </Navbar>
         </div>
     )
