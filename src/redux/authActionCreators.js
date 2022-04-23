@@ -34,7 +34,9 @@ export const auth = (email, password, mode) => dispatch =>{
     axios.post( authUrl + API_KEY, authData )
         .then(response=> {
             if(response.status === 200) {
-                dispatch(authSuccess( response.data.idToken, response.data.localId ))
+                localStorage.setItem('token', response.data.idToken);
+                localStorage.setItem('userId', response.data.localId);
+                dispatch(authSuccess( response.data.idToken, response.data.localId ));
             }
         })
         .catch(err=> console.log(err.response))
