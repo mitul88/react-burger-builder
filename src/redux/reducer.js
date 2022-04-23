@@ -21,6 +21,8 @@ const INITIAL_STATE = {
     canPurchase: false,
     token: null,
     userId: null,
+    authLoading: false,
+    authFailedMsg: null,
 }
 
 export const reducer = (state=INITIAL_STATE, action) => {
