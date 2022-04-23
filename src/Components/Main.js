@@ -6,7 +6,7 @@ import Orders from "./Orders/Orders";
 import Checkout from "./Orders/Checkout/Checkout";
 import Auth from "./Auth/Auth";
 
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import { connect } from "react-redux";
 
@@ -24,6 +24,10 @@ const Main = props => {
         routes = (
             <Routes>
                 <Route path="/login" exact element={<Auth />} />
+                <Route
+                    path="*"
+                    element={<Navigate to="/login" replace />}
+                />
             </Routes>
         )
     } else {
