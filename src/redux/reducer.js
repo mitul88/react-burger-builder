@@ -93,6 +93,15 @@ export const reducer = (state=INITIAL_STATE, action) => {
                 orderLoading: false
             }
 
+        // AUTH CASES
+        
+        case actionTypes.AUTH_SUCCESS:
+            return {
+                ...state,
+                token: action.payload.token,
+                userId: action.payload.userId
+            }
+
         default:
             return state;
     }
