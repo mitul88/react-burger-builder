@@ -3,7 +3,49 @@ import { NavLink } from "react-router-dom";
 import "./Header.css";
 import Logo from '../../assets/logo.png';
 
-const Header = () => {
+import { connect } from "react-redux";
+
+const mapStateToProps = state => {
+    return {
+        token: state.token
+    }
+}
+
+const Header = props => {
+
+    let links = null;
+    if(props.token === null) {
+        links = (
+            <Nav>
+                <NavItem className="mr-md-5">
+                    <NavLink to="/login" className="NavLink">
+                        Login
+                    </NavLink>
+                </NavItem>
+            </Nav>
+        )
+    } else {
+        links = (
+            <Nav>
+                <NavItem className="mr-md-5">
+                    <NavLink exact="true" to="/" className="NavLink">
+                        BurgerBuilder
+                    </NavLink>
+                </NavItem>
+                <NavItem className="mr-md-5">
+                    <NavLink to="/orders" className="NavLink">
+                        Orders
+                    </NavLink>
+                </NavItem>
+                <NavItem className="mr-md-5">
+                    <NavLink to="/logout" className="NavLink">
+                        Logout
+                    </NavLink>
+                </NavItem>
+            </Nav>
+        )
+    }
+
     return (
         <div className="Navigation">
             <Navbar style={{
@@ -13,21 +55,10 @@ const Header = () => {
                 <NavbarBrand href='/' className="mr-auto ml-md-5 Brand">
                     <img src={Logo} alt="Logo" width="80px" />
                 </NavbarBrand>
-                <Nav>
-                    <NavItem className="mr-md-5">
-                        <NavLink exact="true" to="/" className="NavLink">
-                            BurgerBuilder
-                        </NavLink>
-                    </NavItem>
-                    <NavItem className="mr-md-5">
-                        <NavLink to="/orders" className="NavLink">
-                            Orders
-                        </NavLink>
-                    </NavItem>
-                </Nav>
+                {links}
             </Navbar>
         </div>
     )
 }
 
-export default Header;
+export default connect(mapStateToProps)(Header);
