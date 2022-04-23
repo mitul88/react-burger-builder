@@ -36,6 +36,8 @@ export const auth = (email, password, mode) => dispatch =>{
             if(response.status === 200) {
                 localStorage.setItem('token', response.data.idToken);
                 localStorage.setItem('userId', response.data.localId);
+                const expirationTime = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+                localStorage.setItem('expirationTime', expirationTime);
                 dispatch(authSuccess( response.data.idToken, response.data.localId ));
             }
         })
