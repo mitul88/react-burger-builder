@@ -3,6 +3,16 @@ import axios from "axios";
 
 import env from "react-dotenv";
 
+export const authSuccess = (token, userId) => {
+    return {
+        type: actionTypes.AUTH_SUCCESS,
+        payload: {
+            token: token,
+            userId: userId
+        }
+    }
+}
+
 export const auth = (email, password, mode) => dispatch =>{
     const authData = {
         email: email,
