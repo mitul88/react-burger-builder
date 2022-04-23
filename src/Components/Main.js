@@ -8,20 +8,41 @@ import Auth from "./Auth/Auth";
 
 import { Route, Routes } from "react-router-dom";
 
+import { connect } from "react-redux";
+
+const mapStateToProps = state => {
+    return {
+        token: state.token
+    }
+}
+
 const Main = props => {
+
+    let routes = null;
+
+    if (props.token===null) {
+        routes = (
+            <Routes>
+                <Route path="/login" exact element={<Auth />} />
+            </Routes>
+        )
+    } else {
+        routes = (
+            <Routes>
+                <Route path="/" exact element={<BurgerBuilder />} />
+                <Route path="/orders" element={<Orders />} />
+                <Route path="/checkout" element={<Checkout />} />
+            </Routes>
+        )
+    }
     return (
         <div>
             <Header />
             <div className="container">
-                <Routes>
-                    <Route path="/orders" element={<Orders />} />
-                    <Route path="/checkout" element={<Checkout />} />
-                    <Route path="/login" exact element={<Auth />} />
-                    <Route path="/" exact element={<BurgerBuilder />} />
-                </Routes>
+                {routes}
             </div>
         </div>
     )
 }
 
-export default Main;
+export default connect(mapStateToProps)(Main);
