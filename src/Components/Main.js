@@ -10,9 +10,17 @@ import { Route, Routes, Navigate } from "react-router-dom";
 
 import { connect } from "react-redux";
 
+import { authCheck } from "../redux/authActionCreators";
+
 const mapStateToProps = state => {
     return {
         token: state.token
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        authCheck: () => dispatch(authCheck()),
     }
 }
 
@@ -53,4 +61,4 @@ const Main = props => {
     )
 }
 
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
