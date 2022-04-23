@@ -10,10 +10,18 @@ export const auth = (email, password, mode) => dispatch =>{
         returnSecureToken: true,
     }
 
-    const API_KEY= env.API_KEY;
+    let authUrl = null;
 
-    axios.post("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+API_KEY, 
-        authData)
+    if(mode === "register") {
+        authUrl="https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=";
+    }
+     else {
+        authUrl="https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
+    }
+
+    let API_KEY= env.API_KEY;
+
+    axios.post( authUrl + API_KEY, authData )
         .then(response=> {
             console.log(response)
         })
