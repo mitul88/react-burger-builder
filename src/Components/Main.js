@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 import Header from "./Header/Header";
 import BurgerBuilder from "./BurgerBuilder/BurgerBuilder";
@@ -24,41 +24,43 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const Main = props => {
+class Main extends Component  {
 
-    let routes = null;
+    render() {
+        let routes = null;
 
-    if (props.token===null) {
-        routes = (
-            <Routes>
-                <Route path="/login" exact element={<Auth />} />
-                <Route
-                    path="*"
-                    element={<Navigate to="/login" replace />}
-                />
-            </Routes>
-        )
-    } else {
-        routes = (
-            <Routes>
-                <Route path="/" exact element={<BurgerBuilder />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/checkout" element={<Checkout />} />
-                <Route
-                    path="*"
-                    element={<Navigate to="/" replace />}
-                />
-            </Routes>
+        if (props.token===null) {
+            routes = (
+                <Routes>
+                    <Route path="/login" exact element={<Auth />} />
+                    <Route
+                        path="*"
+                        element={<Navigate to="/login" replace />}
+                    />
+                </Routes>
+            )
+        } else {
+            routes = (
+                <Routes>
+                    <Route path="/" exact element={<BurgerBuilder />} />
+                    <Route path="/orders" element={<Orders />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route
+                        path="*"
+                        element={<Navigate to="/" replace />}
+                    />
+                </Routes>
+            )
+        }
+        return (
+            <div>
+                <Header />
+                <div className="container">
+                    {routes}
+                </div>
+            </div>
         )
     }
-    return (
-        <div>
-            <Header />
-            <div className="container">
-                {routes}
-            </div>
-        </div>
-    )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
