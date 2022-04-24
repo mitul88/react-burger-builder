@@ -107,6 +107,7 @@ export const reducer = (state=INITIAL_STATE, action) => {
         case actionTypes.AUTH_LOGOUT:
             return {
                 ...state,
+                authFailedMsg: null,
                 token: null,
                 userId: null
             }
