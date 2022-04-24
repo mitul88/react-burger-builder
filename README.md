@@ -13,6 +13,6 @@ This project uses the Bootstrap v.5, reactstrap v.9 and formik 2.0
 This project requires a firebase api key. please check the envsample file
 
 ### Firebase hosting: Live URL
-https://console.firebase.google.com/project/react-burgerbuilder-17b3f/overview
+https://react-burgerbuilder-17b3f.firebaseapp.com
 
 user can create account using email and can sign in to create customer order and to view user specific orders. All user data and informations are in secured firebase realtime database. 
