@@ -13,6 +13,13 @@ export const authSuccess = (token, userId) => {
     }
 }
 
+export const authFailed = errMsg => {
+    return {
+        type: actionTypes.AUTH_FAILED,
+        payload: errMsg,
+    }
+}
+
 export const authLoading = isLoading => {
     return {
         type: actionTypes.AUTH_LOADING,
@@ -51,8 +58,8 @@ export const auth = (email, password, mode) => dispatch =>{
             }
         })
         .catch(err=>{
-            dispatch(authLoading(false))
-            console.log(err.response)
+                dispatch(authLoading(false))
+                dispatch(authFailed(err.response.data.error.message))
             } 
          )
 }
