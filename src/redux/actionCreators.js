@@ -2,9 +2,6 @@ import axios from 'axios';
 
 import * as actionTypes from './actionTypes';
 
-import env from 'react-dotenv';
-
-const FIREBASE_URL = env.API_URL;
 
 
 
@@ -47,8 +44,9 @@ export const orderLoadFaild = () => {
     }
 }
 
-export const fetchOrders = (token) => dispatch => {
-    axios.get(FIREBASE_URL+"/orders.json?auth=" + token)
+export const fetchOrders = (token, userId) => dispatch => {
+    const queryParams = '&orderBy="userId"&equalTo="'+ userId + '"';
+    axios.get('https://react-burgerbuilder-17b3f-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json?auth=' + token + queryParams)
         .then(response=> {
             dispatch(loadOrders(response.data));
         })
