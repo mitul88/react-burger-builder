@@ -49,7 +49,7 @@
   "react-dotenv": {
     "whitelist": [
       "API_URL",
-      "APU_KEY"
+      "API_KEY"
     ]
   }
 }
