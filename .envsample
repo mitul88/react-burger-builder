@@ -1,1 +1,6 @@
-API_URL=YOUR_FIREBASE_API_KEY
+// window.env = {
+//   "API_KEY": "YOUR_API_KEY"
+// };
+
+
+// Please keep in mind you need to have an environment file named "env.js", where you need to keep your firebase key as example above,
