@@ -4,7 +4,7 @@ import * as actionTypes from './actionTypes';
 
 import env from 'react-dotenv';
 
-const FIREBASE_API = env.API_URL;
+const FIREBASE_URL = env.API_URL;
 
 
 
@@ -47,8 +47,8 @@ export const orderLoadFaild = () => {
     }
 }
 
-export const fetchOrders = () => dispatch => {
-    axios.get(FIREBASE_API+"/orders.json")
+export const fetchOrders = (token) => dispatch => {
+    axios.get(FIREBASE_URL+"/orders.json?auth=" + token)
         .then(response=> {
             dispatch(loadOrders(response.data));
         })

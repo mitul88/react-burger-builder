@@ -20,6 +20,8 @@ const mapStateToProps = state => {
         ingredients: state.ingredients,
         totalPrice: state.totalPrice,
         canPurchase: state.canPurchase,
+        userId: state.userId,
+        token: state.token
     }
 }
 
@@ -63,8 +65,9 @@ class Checkout extends Component {
             customerInfo: this.state.values,
             price: this.props.totalPrice,
             orderCreatedAt: new Date(),
+            userId: this.props.userId
         }
-        axios.post(firebase_api+"/orders.json", order)
+        axios.post(firebase_api+"/orders.json?auth=" + this.props.token, order)
             .then(response=> {
                 console.log(response.status)
                 if(response.status === 200) {
